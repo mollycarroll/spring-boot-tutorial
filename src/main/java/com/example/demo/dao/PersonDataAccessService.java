@@ -1,6 +1,8 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.Person;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,6 +11,14 @@ import java.util.UUID;
 
 @Repository("postgres")
 public class PersonDataAccessService implements PersonDao {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public PersonDataAccessService(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     @Override
     public int insertPerson(UUID id, Person person) {
         return 0;
